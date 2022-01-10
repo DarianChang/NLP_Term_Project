@@ -17,7 +17,6 @@ st.markdown('Our Task is try to upgrade sentence. Base on CEFR, we can choose wh
 st.markdown('For Example,  input sentence: **An big accident.**')
 st.markdown('Then, we try to upgrade adjective. (i.e. In this sentence, we\' re going to upgrade  "big\") ')
 st.markdown("Output: **An serious accident**")
-st.markdown("Output: **An serious accident**")
 st.markdown("---")
 
 st.markdown("## Demo")
@@ -27,7 +26,9 @@ with st.form(key='my_form'):
     # adj = st.checkbox('Adjective'),
     # adv = st.checkbox('Adverb'),
     select = st.selectbox('Which type do you want to upgrade ?', ['Noun', 'Adjective','Adverb']) # return type: list
-    submit_button = st.form_submit_button(label='Submit')
+    submitted = st.form_submit_button(label='Submit')
+    if submitted:
+        st.success('This is a success message!')
 
 st.write('text input:', text_input)
 st.write('Upgrade type:', select)
