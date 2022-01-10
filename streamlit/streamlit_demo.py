@@ -2,7 +2,7 @@ import time
 import streamlit as st
 import numpy as np
 import pandas as pd
-import processing
+from processing import proper_adj_topk
 
 st.set_page_config(
     page_title="NLP Demo",
@@ -38,7 +38,7 @@ st.write('text input:', text_input)
 st.write('Upgrade type:', select)
 
 # input and calculate the result
-mask_result = processing.proper_adj_topk(text_input,5)
+mask_result = proper_adj_topk(text_input,5)
 mask_result_sequence_list = mask_result["sequence"]
 # score	token	token_str	sequence	mask_index
 
