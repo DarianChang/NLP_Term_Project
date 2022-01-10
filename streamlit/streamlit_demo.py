@@ -38,7 +38,7 @@ st.write('text input:', text_input)
 st.write('Upgrade type:', select)
 
 # input and calculate the result
-mask_result = proper_adj_topk(text_input,5)
+mask_result = processing.proper_adj_topk(text_input,5)
 mask_result_sequence_list = mask_result["sequence"]
 # score	token	token_str	sequence	mask_index
 
@@ -50,7 +50,7 @@ with st.spinner(text='In progress'):
 
 # output result
 
-st.write('Output result:', select)
+# st.write('Output result:', select)
 
 txt = st.text_area('Text to analyze', mask_result_sequence_list)
 
