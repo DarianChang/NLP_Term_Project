@@ -2,7 +2,7 @@ import time
 import streamlit as st
 import numpy as np
 import pandas as pd
-from processing import proper_adj_topk
+from processing import *
 
 st.set_page_config(
     page_title="NLP Demo",
