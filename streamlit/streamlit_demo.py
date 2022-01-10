@@ -17,6 +17,7 @@ st.markdown('Our Task is try to upgrade sentence. Base on CEFR, we can choose wh
 st.markdown('For Example,  input sentence: **An big accident.**')
 st.markdown('Then, we try to upgrade adjective. (i.e. In this sentence, we\' re going to upgrade  "big\") ')
 st.markdown("Output: **An serious accident**")
+st.markdown("Output: **An serious accident**")
 st.markdown("---")
 
 st.markdown("## Demo")
