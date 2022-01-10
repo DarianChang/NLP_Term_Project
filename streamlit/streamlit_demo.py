@@ -2,7 +2,7 @@ import time
 import streamlit as st
 import numpy as np
 import pandas as pd
-import precessing.py
+import processing.py
 
 st.set_page_config(
     page_title="NLP Demo",
