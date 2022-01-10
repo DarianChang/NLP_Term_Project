@@ -2,6 +2,7 @@ import time
 import streamlit as st
 import numpy as np
 import pandas as pd
+import precessing.py
 
 st.set_page_config(
     page_title="NLP Demo",
@@ -25,14 +26,22 @@ with st.form(key='my_form'):
     # noun = st.checkbox('Noun'),
     # adj = st.checkbox('Adjective'),
     # adv = st.checkbox('Adverb'),
-    select = st.selectbox('Which type do you want to upgrade ?', ['Noun', 'Adjective','Adverb']) # return type: list
+    select = st.selectbox('Which type do you want to upgrade ?', ['Adjective','Noun','Adverb']) # return type: list
     submitted = st.form_submit_button(label='Submit')
+    
+    
     if submitted:
-        st.success('This is a success message!')
+        st.success('submitted successfully')
+        
 
 st.write('text input:', text_input)
 st.write('Upgrade type:', select)
-    
+
+# input and calculate the result
+mask_result = proper_adj_topk(text_input,5)
+mask_result_sequence_list = mask_result["sequence"]
+# score	token	token_str	sequence	mask_index
+
 with st.spinner(text='In progress'):
     for i in range(100):
         # Process language model
@@ -40,3 +49,14 @@ with st.spinner(text='In progress'):
     st.success('Done')
 
 # output result
+
+st.write('Output result:', select)
+
+txt = st.text_area('Text to analyze', '''
+     It was the best of times, it was the worst of times, it was
+     the age of wisdom, it was the age of foolishness, it was
+     the epoch of belief, it was the epoch of incredulity, it
+     was the season of Light, it was the season of Darkness, it
+     was the spring of hope, it was the winter of despair, (...)
+     ''')
+st.write('Sentiment:', run_sentiment_analysis(txt))
