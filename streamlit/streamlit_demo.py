@@ -87,7 +87,7 @@ def nli_sents(premise, hypothesis):
     predicted_probability = torch.softmax(outputs[0], dim=1)[0].tolist()  # batch_size only one
     return {"Ent": round(predicted_probability[0],2),"Neu": round(predicted_probability[1],2),"Con": round(predicted_probability[2],2)}
 
-def nli_result_append(mask_result,mask_result_sent,k,forward_nli_E,backward_nli_E):
+def nli_result_append(input_sent,mask_result,mask_result_sent,k,forward_nli_E,backward_nli_E):
     mask_result["forward_nli_E"] = [nli_sents(input_sent,i)["Ent"] for i in mask_result_sent]
     mask_result["forward_nli_N"] = [nli_sents(input_sent,i)["Neu"] for i in mask_result_sent]
     mask_result["forward_nli_C"] = [nli_sents(input_sent,i)["Con"] for i in mask_result_sent]
@@ -111,7 +111,7 @@ def proper_adj_topk(input_sent,k,forward_nli_E=0.5,backward_nli_E=0.5) : # -> {"
     mask_result = mask_result[filter]
     # print(mask_result)
     mask_result_sent = list(mask_result.loc[:,"sequence"])
-    mask_result = nli_result_append(mask_result,mask_result_sent,k,forward_nli_E,backward_nli_E)
+    mask_result = nli_result_append(input_sent,mask_result,mask_result_sent,k,forward_nli_E,backward_nli_E)
     # print(mask_result)
     return mask_result
 
@@ -164,6 +164,6 @@ with st.spinner(text='In progress'):
 
 # st.write('Output result:', select)
 
-txt = st.text_area('Text to analyze', mask_result_sequence_list)
+txt = st.text_area('Text to analyze', str(mask_result_sequence_list))
 
 st.write('Output result:', txt)
